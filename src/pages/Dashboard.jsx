@@ -1,10 +1,13 @@
 import { useEffect } from "react";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
+import { useEffect } from "react";
 
 export default function Dashboard() {
   useEffect(() => {
     const isLogin = localStorage.getItem("isLogin");
-    if (!isLogin) {
+    const role = localStorage.getItem("role");
+
+    if (!isLogin || role !== "admin") {
       window.location.href = "/login";
     }
   }, []);
@@ -40,3 +43,9 @@ const styles = {
   container: { padding: "30px", color: "white" },
   title: { marginBottom: "20px" }
 };
+
+  return (
+    <div>
+      <h1>Dashboard Admin</h1>
+    </div>
+  );

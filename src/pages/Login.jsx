@@ -48,6 +48,16 @@ export default function Login() {
   );
 }
 
+function handleLogin(userRole) {
+  localStorage.setItem("isLogin", "true");
+  localStorage.setItem("role", userRole);
+  if (userRole === "admin") {
+    window.location.href = "/dashboard";
+  } else {
+    window.location.href = "/"; 
+  }
+}
+
 const styles = {
   container: {
     background: "linear-gradient(135deg, #050b2c, #0d1b4c)",
