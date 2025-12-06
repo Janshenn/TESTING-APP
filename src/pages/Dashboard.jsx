@@ -1,18 +1,13 @@
 import { useEffect } from "react";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 
-useEffect(() => {
-  const token = localStorage.getItem("token");
-  if (!token) {
-    window.location.href = "/login"; 
-  } else {
-    fetch("/api/verify-token", {
-      headers: { Authorization: `Bearer ${token}` }
-    }).then(res => {
-      if (!res.ok) window.location.href = "/login";
-    });
-  }
-}, []);
+export default function Dashboard() {
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      window.location.href = "/login";
+    }
+  }, []);
 
   const data = [
     { name: "Users", value: 120 },
@@ -39,19 +34,9 @@ useEffect(() => {
       </ResponsiveContainer>
     </div>
   );
+}
 
 const styles = {
   container: { padding: "30px", color: "white" },
   title: { marginBottom: "20px" }
 };
-
-<ResponsiveContainer width="100%" height={300}>
-  <PieChart>
-    <Pie data={data} dataKey="value" cx="50%" cy="50%" outerRadius={100} label>
-      {data.map((_, i) => (
-        <Cell key={i} fill={COLORS[i]} />
-      ))}
-    </Pie>
-    <Tooltip />
-  </PieChart>
-</ResponsiveContainer>
