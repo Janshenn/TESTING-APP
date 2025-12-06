@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import { PieChart, Pie, Cell, Tooltip } from "recharts";
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 
 export default function Dashboard() {
   useEffect(() => {
-    const isLogin = localStorage.getItem("isLogin");
-    if (!isLogin) {
-      window.location.href = "/";
+    const token = localStorage.getItem("token"); // atau "isLogin"
+    if (!token) {
+      window.location.href = "/login";
     }
   }, []);
 
@@ -22,21 +22,16 @@ export default function Dashboard() {
     <div style={styles.container}>
       <h1 style={styles.title}>Dashboard</h1>
 
-      <PieChart width={350} height={350}>
-        <Pie
-          data={data}
-          cx="50%"
-          cy="50%"
-          outerRadius={120}
-          dataKey="value"
-          label
-        >
-          {data.map((_, i) => (
-            <Cell key={i} fill={COLORS[i]} />
-          ))}
-        </Pie>
-        <Tooltip />
-      </PieChart>
+      <ResponsiveContainer width="100%" height={300}>
+        <PieChart>
+          <Pie data={data} dataKey="value" cx="50%" cy="50%" outerRadius={100} label>
+            {data.map((_, i) => (
+              <Cell key={i} fill={COLORS[i]} />
+            ))}
+          </Pie>
+          <Tooltip />
+        </PieChart>
+      </ResponsiveContainer>
     </div>
   );
 }
@@ -45,3 +40,14 @@ const styles = {
   container: { padding: "30px", color: "white" },
   title: { marginBottom: "20px" }
 };
+
+<ResponsiveContainer width="100%" height={300}>
+  <PieChart>
+    <Pie data={data} dataKey="value" cx="50%" cy="50%" outerRadius={100} label>
+      {data.map((_, i) => (
+        <Cell key={i} fill={COLORS[i]} />
+      ))}
+    </Pie>
+    <Tooltip />
+  </PieChart>
+</ResponsiveContainer>
