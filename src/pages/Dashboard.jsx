@@ -6,7 +6,7 @@ export default function Dashboard() {
     const isLogin = localStorage.getItem("isLogin");
     const role = localStorage.getItem("role");
     if (!isLogin || role !== "admin") {
-      window.location.href = "/login"; // redirect kalau bukan admin
+      window.location.href = "/login"; 
     }
   }, []);
 

@@ -48,13 +48,13 @@ export default function Login() {
   );
 }
 
-function handleLogin(userRole) {
-  localStorage.setItem("isLogin", "true");
-  localStorage.setItem("role", userRole);
-  if (userRole === "admin") {
+function handleLogin(username, password) {
+  if (username === "admin" && password === "12345") { 
+    localStorage.setItem("isLogin", "true");
+    localStorage.setItem("role", "admin");
     window.location.href = "/dashboard";
   } else {
-    window.location.href = "/"; 
+    alert("Login failed");
   }
 }
 
