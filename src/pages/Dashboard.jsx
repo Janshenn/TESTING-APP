@@ -3,8 +3,8 @@ import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 
 export default function Dashboard() {
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
+    const isLogin = localStorage.getItem("isLogin");
+    if (!isLogin) {
       window.location.href = "/login";
     }
   }, []);
