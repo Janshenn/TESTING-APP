@@ -8,7 +8,6 @@ import Sidebar from "./components/Sidebar";
 function App() {
   const isLogin = localStorage.getItem("isLogin") === "true";
 
-
   return (
     <BrowserRouter>
       <Routes>

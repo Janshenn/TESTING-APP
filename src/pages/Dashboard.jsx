@@ -1,6 +1,14 @@
+import { useEffect } from "react";
 import { PieChart, Pie, Cell, Tooltip } from "recharts";
 
 export default function Dashboard() {
+  useEffect(() => {
+    const isLogin = localStorage.getItem("isLogin");
+    if (!isLogin) {
+      window.location.href = "/";
+    }
+  }, []);
+
   const data = [
     { name: "Users", value: 120 },
     { name: "Events", value: 45 },
@@ -37,19 +45,3 @@ const styles = {
   container: { padding: "30px", color: "white" },
   title: { marginBottom: "20px" }
 };
-
-const isLogin = localStorage.getItem("isLogin");
-
-if (!isLogin) {
-  window.location.href = "/";
-}
-
-function Dashboard() {
-  return (
-    <div>
-      <h1>Welcome to Dashboard</h1>
-    </div>
-  );
-}
-
-export default Dashboard;
