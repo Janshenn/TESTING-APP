@@ -49,7 +49,7 @@ export default function Login() {
 }
 
 function handleLogin(username, password) {
-  if (username === "admin" && password === "12345") { 
+  if (username === "admin@gmail.com" && password === "12345") { 
     localStorage.setItem("isLogin", "true");
     localStorage.setItem("role", "admin");
     window.location.href = "/dashboard";
