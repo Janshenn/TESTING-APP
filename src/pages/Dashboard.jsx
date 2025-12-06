@@ -1,13 +1,18 @@
 import { useEffect } from "react";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 
-export default function Dashboard() {
-  useEffect(() => {
-    const token = localStorage.getItem("token"); // atau "isLogin"
-    if (!token) {
-      window.location.href = "/login";
-    }
-  }, []);
+useEffect(() => {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    window.location.href = "/login"; 
+  } else {
+    fetch("/api/verify-token", {
+      headers: { Authorization: `Bearer ${token}` }
+    }).then(res => {
+      if (!res.ok) window.location.href = "/login";
+    });
+  }
+}, []);
 
   const data = [
     { name: "Users", value: 120 },
@@ -34,7 +39,6 @@ export default function Dashboard() {
       </ResponsiveContainer>
     </div>
   );
-}
 
 const styles = {
   container: { padding: "30px", color: "white" },
