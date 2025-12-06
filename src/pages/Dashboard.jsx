@@ -37,3 +37,9 @@ const styles = {
   container: { padding: "30px", color: "white" },
   title: { marginBottom: "20px" }
 };
+
+const isLogin = localStorage.getItem("isLogin");
+
+if (!isLogin) {
+  window.location.href = "/";
+}
