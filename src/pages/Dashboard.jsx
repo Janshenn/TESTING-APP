@@ -1,14 +1,12 @@
 import { useEffect } from "react";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
-import { useEffect } from "react";
 
 export default function Dashboard() {
   useEffect(() => {
     const isLogin = localStorage.getItem("isLogin");
     const role = localStorage.getItem("role");
-
     if (!isLogin || role !== "admin") {
-      window.location.href = "/login";
+      window.location.href = "/login"; // redirect kalau bukan admin
     }
   }, []);
 
@@ -22,8 +20,8 @@ export default function Dashboard() {
   const COLORS = ["#1e40af", "#2563eb", "#3b82f6", "#60a5fa"];
 
   return (
-    <div style={styles.container}>
-      <h1 style={styles.title}>Dashboard</h1>
+    <div style={{ padding: "30px", color: "white" }}>
+      <h1 style={{ marginBottom: "20px" }}>Dashboard Admin</h1>
 
       <ResponsiveContainer width="100%" height={300}>
         <PieChart>
@@ -38,14 +36,3 @@ export default function Dashboard() {
     </div>
   );
 }
-
-const styles = {
-  container: { padding: "30px", color: "white" },
-  title: { marginBottom: "20px" }
-};
-
-  return (
-    <div>
-      <h1>Dashboard Admin</h1>
-    </div>
-  );
