@@ -8,9 +8,12 @@ export default function Login() {
 
   const handleLogin = (e) => {
     e.preventDefault();
+
+    // hanya admin@gmail.com dengan password 123456 bisa login
     if (email === "admin@gmail.com" && password === "123456") {
       localStorage.setItem("isLogin", "true");
-      navigate("/dashboard");
+      localStorage.setItem("role", "admin");
+      navigate("/dashboard"); // redirect ke dashboard
     } else {
       alert("Wrong email or password");
     }
@@ -46,16 +49,6 @@ export default function Login() {
       </div>
     </div>
   );
-}
-
-function handleLogin(username, password) {
-  if (username === "admin@gmail.com" && password === "12345") { 
-    localStorage.setItem("isLogin", "true");
-    localStorage.setItem("role", "admin");
-    window.location.href = "/dashboard";
-  } else {
-    alert("Login failed");
-  }
 }
 
 const styles = {
